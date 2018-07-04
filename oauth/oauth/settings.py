@@ -74,6 +74,8 @@ WSGI_APPLICATION = 'oauth.wsgi.application'
 
 AUTHENTICATION_BACKENDS=[
     'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.email.EmailAuth',
+    
 ]
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

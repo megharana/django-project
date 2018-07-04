@@ -1,0 +1,12 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | Flask OAuth Example</title>
+<link rel=stylesheet type=text/css href="">
+<h1>Github OAuth </h1>
+
+
+{% block content %}
+	{%if request.user.is_authenticated%}
+		username:{{request.user.username}}
+
+	{% endif %}
+{% endblock %}
