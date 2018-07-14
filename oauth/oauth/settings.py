@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'social_django',
+    'rest_framework',
+    'login.apps.LoginConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,8 +75,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'oauth.wsgi.application'
 
 AUTHENTICATION_BACKENDS=[
+    
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.email.EmailAuth',
+    'django.contrib.auth.backends.ModelBackend',
+
     
 ]
 # Database
