@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from login.forms import HomeForm
 
 def home(request,*args,**kwargs):
 	from social_core.backends.github import GithubOAuth2
@@ -12,3 +13,10 @@ def profile(request):
 	second_repo = u
 	return render(request,'auth_profile.html',{'data':second_repo})
 	
+def post(request):
+	form = HomeForm(request.POST)
+	if form.is_valid():
+		text = form.cleaned_data['post']
+
+	args={'form':form,'text':text}
+	return render(request,'auth_profile.html',args)
