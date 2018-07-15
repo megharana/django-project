@@ -8,17 +8,17 @@
 	
 	<div class="container">
 		<form method="post" >{% csrf_token %}
-			 
-			<input type="text" name="text">
+			 {{ form }}
+			
 			<button type="submit">Submit</button>
 		</form>
 	</div>
 
-	{%if request.user.is_authenticated%}
-		<!--username:{{request.user.username}}-->
+	<!--{%if request.user.is_authenticated%}
+		username:{{request.user.username}}
 
 		{%for user in data%}
 			</br>{{user.login}}
 		{%endfor%}
-	{% endif %}
+	{% endif %}-->
 {% endblock %}
