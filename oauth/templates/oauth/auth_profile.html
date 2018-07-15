@@ -1,5 +1,5 @@
 <!doctype html>
-<title>{% block title %}Welcome{% endblock %} | Flask OAuth Example</title>
+<title>{% block title %}Django{% endblock %}</title>
 <link rel=stylesheet type=text/css href="">
 <h1>Github OAuth </h1>
 
@@ -7,18 +7,23 @@
 {% block content %}
 	
 	<div class="container">
-		<form method="post" >{% csrf_token %}
-			 {{ form }}
+		<form method="post">{% csrf_token %}
+			<input type="text" name="name" id="name">
 			
 			<button type="submit">Submit</button>
+			
 		</form>
 	</div>
 
-	<!--{%if request.user.is_authenticated%}
-		username:{{request.user.username}}
+	<!-- {%if request.user.is_authenticated%}
+				username:{{request.user.username}}
 
-		{%for user in data%}
-			</br>{{user.login}}
-		{%endfor%}
-	{% endif %}-->
+				
+		
+
+		{% endif %} -->
+	{%for one in data%}
+					</br>{{one.login}}
+	{%endfor%}
+
 {% endblock %}

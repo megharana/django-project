@@ -13,7 +13,8 @@ urlpatterns = [
     url(r'auth-social/', include('social_django.urls',namespace='social')),
 	#url(r'accounts/profile/', auth_social.profile, name='auth-social'),
 	url(r'accounts/profile/', auth_social.getName, name='auth-social'),
-
+	
+	
 	#url(r'^complete/(?P<backend>[^/]+){0}$'.format(extra), complete, name='complete'),
 
 ]

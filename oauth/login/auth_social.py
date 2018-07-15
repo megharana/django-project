@@ -7,20 +7,21 @@ from login.forms import HomeForm
 def home(request,*args,**kwargs):
 	
 	return render(request,'auth_social.html')
-def profile(request):
+
 	
-	g = Github("6a492d69f880a6e9fb59044c4321e182555466b1")
 	
-	u = g.search_users("Megha", location="India")[0:10]
-	second_repo = u
-	return render(request,'auth_profile.html',{'data':second_repo})
+
 	
 def getName(request):
 	if request.method == 'POST':
 		form = HomeForm(request.POST)
 		if form.is_valid():
+			name=form.cleaned_data['name']
+			print(name)
+			g = Github("5e3501899d3db07ba1603cc6c19726532d94f820")
+			u = g.search_users(name, location="India")[0:10]
+			return render(request,'auth_profile.html',{'data':u})
 
-			return HttpResponseRedirect('https://www.google.com/')
 	else:
 			form=HomeForm()
 	return render(request, 'auth_profile.html', {'form': form})
