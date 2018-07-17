@@ -22,8 +22,25 @@
 		
 
 		{% endif %} -->
-	{%for one in data%}
-					</br>{{one.login}}
-	{%endfor%}
+	
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>type</th>
+				<th>Score</th>
+			</tr>
+			{%for one in data%}
+			<tr>
+				<td>{{one.login}}</td>
+				<td>{{one.type}}</td>
+				<td>{{one.score}}</td>
+			</tr>
+
+			<tr>{{one.score}}</tr>
+			{%endfor%}
+		</table>
+
+
+	
 
 {% endblock %}
