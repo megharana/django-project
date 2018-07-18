@@ -15,9 +15,10 @@ def home(request,*args,**kwargs):
 
 def getName(request):
 	if request.method == 'POST':
-		form = HomeForm(request.POST)
-		if form.is_valid():
-			name=form.cleaned_data['name']
+		form1 = HomeForm(request.POST)
+		#form2 = HomeForm(request.POST,prefix="loginInfo")
+		if form1.is_valid():
+			name=form1.cleaned_data['name']
 			print(name)
 			g = Github("873cf040ccddfa9ed50d579b49abf2b963055e08")
 			users = g.search_users(name, location="India")[0:10]
@@ -25,7 +26,11 @@ def getName(request):
 			# 	u=User.objects.create(username=user.login, usertype=user.type)
 			# 	u.save()
 			return render(request,'auth_profile.html',{'data':users})
+			# if form2.is_valid():
+			# 	loginInfo=form2.cleaned_data['loginInfo']
+			# return render(request,'auth_profile.html',{'data':users,'loginInfo':loginInfo})
 
 	else:
-			form=HomeForm()
-	return render(request, 'auth_profile.html', {'form': form})
+			form1 = HomeForm()
+			
+	return render(request, 'auth_profile.html', {'form1': form1})

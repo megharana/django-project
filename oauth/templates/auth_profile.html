@@ -32,26 +32,28 @@
 	<!-- {%if request.user.is_authenticated%}
 				username:{{request.user.username}}
 		{% endif %} -->
-	
-		<table class="centered striped">
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>type</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-			{%for one in data%}
-				<tr>
-					<td>{{one.login}}</td>
-					<td>{{one.type}}</td>
-					<td><a href=""><i class="material-icons">save</i></a></td>			
-				</tr>
+		<form method="get|post">{% csrf_token %}
+			<table class="centered striped">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>type</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+				{%for one in data%}
+					<tr>
+						<td name="loginInfo">{{one.login}}</td>
+						<td>{{one.type}}</td>
+						<td><button type="submit" formmethod="post"><i class="material-icons">save</i></button></td>			
+					</tr>
 
-			{%endfor%}
-			</tbody>
-		</table>
+				{%endfor%}
+				</tbody>
+			</table>
+		</form>
+		
 	</div>
 {% endblock %}
 
