@@ -108,3 +108,6 @@ Scripts/*
 
 #Lib
 Lib/*
+
+#dbsqlite3
+oauth/db.sqlite3
