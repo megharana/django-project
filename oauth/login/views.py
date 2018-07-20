@@ -2,15 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from social_core.backends.github import GithubOAuth2
 from github import Github
-from login.forms import HomeForm
+from login.forms import HomeForm,InfoHome
 from login.models import User
 
 def index(request):
 	return HttpResponse("<h1>This is login page</h1>")
 def home(request,*args,**kwargs):
-	all_users=User.objects.all()
-	for user in all_users:
-		print (user.username, user.usertype)
+	
 	return render(request,'auth_social.html')
 
 def getName(request):
@@ -20,7 +18,7 @@ def getName(request):
 		if form1.is_valid():
 			name=form1.cleaned_data['name']
 			print(name)
-			g = Github("4c41ba93ee379dba07d5e84ae8b8f44d5a14dffc")
+			g = Github("1f8fbe3fcb2d944d0da715ee772ee59d15e76e6d")
 			users = g.search_users(name, location="India")[0:10]
 			# for user in users:
 			# 	u=User.objects.create(username=user.login, usertype=user.type)
@@ -36,12 +34,19 @@ def getName(request):
 	
 
 	if request.method=='POST' and 'loginInfo' in request.POST:
-		form2 = HomeForm(request.POST)
-		if form2.is_valid():
-			loginInfo=form2.cleaned_data['loginInfo']
+		print("sandhya")
+		form1 = InfoHome(request.POST)
+		if form1.is_valid():
+			print("hello")
+			loginInfo=form1.cleaned_data['loginInfo']
+
 			print(loginInfo)
+			u=User.objects.create(username=loginInfo,usertype="User")
+			u.save()
 	else:
-		form2 = HomeForm()
+		form1 = InfoHome()
 
-
-	return render(request, 'auth_profile.html', {'form1': form1})
+	all_users=User.objects.all()
+	for user in all_users:
+		print (user.username)
+	return render(request, 'auth_profile.html', {'form1': form1,'all_users':all_users})
