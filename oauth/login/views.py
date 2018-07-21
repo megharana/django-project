@@ -38,8 +38,8 @@ def getName(request):
 		form1 = InfoHome(request.POST)
 		if form1.is_valid():
 			print("hello")
+			loginInfo=[]
 			loginInfo=form1.cleaned_data['loginInfo']
-
 			print(loginInfo)
 			u=User.objects.create(username=loginInfo,usertype="User")
 			u.save()
