@@ -18,7 +18,7 @@ def getName(request):
 		if form1.is_valid():
 			name=form1.cleaned_data['name']
 			print(name)
-			g = Github("1f8fbe3fcb2d944d0da715ee772ee59d15e76e6d")
+			g = Github("0e10480d359134532250e728e9cd3817414c9d14 ")
 			users = g.search_users(name, location="India")[0:10]
 			# for user in users:
 			# 	u=User.objects.create(username=user.login, usertype=user.type)

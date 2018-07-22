@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'auth/social/', views.home, name='auth-social'),
     url(r'auth-social/', include('social_django.urls',namespace='social')),
 	url(r'accounts/profile/', views.getName, name='getName'),
+	url(r'^auth/posts/',include(("login.api.urls",'login'),namespace='posts-api')),
 	
 	
 	
