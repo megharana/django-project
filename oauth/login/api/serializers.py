@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer,HyperlinkedModelSerializer
 
 from login.models import User
 class PostSerializer(ModelSerializer):

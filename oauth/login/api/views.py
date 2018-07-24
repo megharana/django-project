@@ -1,7 +1,8 @@
-from rest_framework.generics import ListAPIView,viewsets
+from rest_framework.generics import ListAPIView
+from rest_framework import viewsets
 
 from login.models import User
-from .serializers import PostSerializer
+from .serializers import PostSerializer,UserSerializer
 class PostListAPIView(ListAPIView):
 
 	queryset=User.objects.all()
