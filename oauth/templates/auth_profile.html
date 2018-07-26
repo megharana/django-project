@@ -34,7 +34,10 @@
 				<tbody>
 				{%for one in data%}
 					<tr>
-						<td><input type="radio" name="loginInfo" value="{{one.login}}"></td>
+						<td>
+							<input type="radio" name="loginInfo" value="{{one.login}},{{one.type}},{{one.avatar_url}}">
+
+						</td>
 						<td>{{one.login}}</td>
 						<td>{{one.type}}</td>
 									
@@ -60,6 +63,7 @@
 						<tr>
 							<td>{{user.username}}</td>
 							<td>{{user.usertype}}</td>
+							<td><a href="{{user.userAvatarUrl}}">{{user.userAvatarUrl}}</a></td>
 						</tr>
 					{%endfor%}
 					
