@@ -7,7 +7,8 @@ class PostSerializer(ModelSerializer):
 		fields = [
 			'username',
 			'usertype',
-			'userAvatarUrl'
+			'userAvatarUrl',
+			'createdDate'
 		]
 
 
@@ -17,5 +18,6 @@ class UserSerializer(HyperlinkedModelSerializer):
 		fields = [
 			'username',
 			'usertype',
-			'userAvatarUrl'
+			'userAvatarUrl',
+			'createdDate'
 		]
