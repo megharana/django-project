@@ -4,6 +4,8 @@ from social_core.backends.github import GithubOAuth2
 from github import Github
 from login.forms import HomeForm,InfoHome
 from login.models import User
+import requests
+
 
 def index(request):
 	return HttpResponse("<h1>This is login page</h1>")
@@ -18,7 +20,7 @@ def getName(request):
 		if form1.is_valid():
 			name=form1.cleaned_data['name']
 			print(name)
-			g = Github("0d61bdde2f6507723cd28e040ecc9853973ca9ef ")
+			g = Github("0e10480d359134532250e728e9cd3817414c9d14")
 			users = g.search_users(name, location="India")[0:10]
 			# for user in users:
 			# 	print(user.avatar_url)
@@ -33,17 +35,22 @@ def getName(request):
 	
 
 	if request.method=='POST' and 'loginInfo' in request.POST:
-		print("sandhya")
+		#print("sandhya")
 		form1 = InfoHome(request.POST)
 		if form1.is_valid():
 			#print("hello")
 			userdetails=[]
 			loginInfo=form1.cleaned_data['loginInfo']
 			#print(loginInfo)
+			
 			detail=loginInfo.split(",")		
 			#print(detail[0])
-			
-			u=User.objects.create(username=detail[0],usertype=detail[1],userAvatarUrl=detail[2])
+			url = "https://api.github.com/users/%s" %detail[0]
+			print(url)
+			response = requests.get(url)
+			geodata = response.json()
+			created_date = geodata['created_at']
+			u=User.objects.create(username=detail[0],usertype=detail[1],userAvatarUrl=detail[2],createdDate=created_date[:10])
 			u.save()
 	else:
 		form1 = InfoHome()
